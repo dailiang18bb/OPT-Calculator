@@ -1,0 +1,68 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+
+<div style="text-align:center">
+<h2>Please select your official Graduation Date!</h2>
+  <mat-form-field >
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<div style="text-align:center">
+  <h2>You can select a date between the first day to 60 days(grace period) after your graduation day, 
+     Please select your expect OPT start date</h2>
+
+     <mat-form-field class="example-full-width">
+        <input [(ngModel)]="optStartDate" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker_opt_start" placeholder="Choose a date"
+        (dateInput)="showSummary('input', $event)" (dateChange)="showSummary('change', $event)">
+        <mat-datepicker-toggle matSuffix [for]="picker_opt_start"></mat-datepicker-toggle>
+        <mat-datepicker #picker_opt_start></mat-datepicker>
+      </mat-form-field>
+</div>
+
+<mat-card>
+  <mat-card-header>
+    <h2>Summary</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+        Your official graduation date is : {{graduationDate}}
+    </p>
+    <p>
+        Your expect OPT start date is : {{optStartDate}}
+    </p>
+    <p>
+        Your OPT end date is  : {{optEndDate}}
+    </p>
+
+  </mat-card-content>
+</mat-card>
+
+
+
+
+<!-- 
+<div class="container" fxLayout="column" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div fxFlex="50%" *ngFor="let i of [1,2]">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ selectedDate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-calendar [selected]="selectedDate" (selectedChange)="onSelect($event)"></mat-calendar>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 
+-->
+
+
+
+
+<router-outlet></router-outlet>
